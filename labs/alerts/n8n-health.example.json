@@ -1,0 +1,25 @@
+{
+  "name": "pulse-health-example",
+  "comment": "Схема для чтения. Импорт в вашу версию n8n может потребовать поправок. n8n не на VPS 1 ГБ.",
+  "nodes_idea": [
+    {
+      "type": "schedule",
+      "every": "2 minutes"
+    },
+    {
+      "type": "httpRequest",
+      "method": "GET",
+      "url": "https://pulse.example.ru/health",
+      "options": { "timeout": 15000 }
+    },
+    {
+      "type": "if",
+      "condition": "statusCode != 200"
+    },
+    {
+      "type": "telegram",
+      "credentials": "из хранилища n8n, не из поля ноды открытым текстом",
+      "text": "CRITICAL Пульс health не 200. Runbook: сайт не открывается."
+    }
+  ]
+}

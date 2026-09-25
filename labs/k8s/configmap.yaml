@@ -1,0 +1,9 @@
+# Аналог несекретных переменных из .env / environment в Compose.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pulse-config
+  namespace: pulse
+data:
+  PULSE_TITLE: "Пульс"
+  PULSE_PORT: "8080"

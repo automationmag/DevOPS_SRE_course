@@ -1,0 +1,21 @@
+services:
+  pulse:
+    build: .
+    container_name: pulse
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      PULSE_TITLE: ${PULSE_TITLE:-Пульс}
+    volumes:
+      - ./data:/data
+    ports:
+      # Временно для модуля 4: сайт по IP:8080
+      # После модуля 5 закомментируйте эти две строки — вход только через Caddy
+      - "8080:8080"
+    mem_limit: 64m
+    logging:
+      driver: json-file
+      options:
+        max-size: "2m"
+        max-file: "3"

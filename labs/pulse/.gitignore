@@ -1,0 +1,4 @@
+.env
+alert.env
+data/
+alert-state/

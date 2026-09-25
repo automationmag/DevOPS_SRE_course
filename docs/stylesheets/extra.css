@@ -1,0 +1,80 @@
+.lesson-progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 2rem 0 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-code-bg-color);
+}
+
+.lesson-progress__btn,
+.lesson-progress__reset {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--md-primary-fg-color);
+}
+
+.lesson-progress__btn {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
+
+.lesson-progress__btn.is-done {
+  background: transparent;
+  color: var(--md-typeset-color);
+}
+
+.lesson-progress__reset {
+  background: transparent;
+  color: var(--md-typeset-color);
+  border-color: var(--md-default-fg-color--lighter);
+}
+
+.lesson-progress__status {
+  margin: 0;
+  opacity: 0.85;
+}
+
+.md-nav__link.lesson-done {
+  color: var(--md-typeset-a-color);
+}
+
+.md-nav__link.lesson-done::after {
+  content: " ✓";
+  font-weight: 700;
+}
+
+.progress-page__bar {
+  height: 0.65rem;
+  border-radius: 999px;
+  background: var(--md-default-fg-color--lightest);
+  overflow: hidden;
+  margin: 0.8rem 0 1.2rem;
+}
+
+.progress-page__fill {
+  height: 100%;
+  width: 0;
+  background: var(--md-primary-fg-color);
+}
+
+.progress-page__list {
+  list-style: none;
+  padding: 0;
+}
+
+.progress-page__list li {
+  padding: 0.2rem 0;
+}
+
+.md-typeset .placeholder-screen {
+  border: 1px dashed var(--md-default-fg-color--lighter);
+  border-radius: 0.5rem;
+  padding: 1rem 1.1rem;
+  background: var(--md-code-bg-color);
+}

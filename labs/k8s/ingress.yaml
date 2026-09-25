@@ -1,0 +1,27 @@
+# Ingress ≈ Caddy/Nginx на входе кластера: имя + HTTPS + куда проксировать.
+# Контроллер Ingress (как процесс Caddy) должен уже стоять в кластере.
+# tls.secretName — сертификат; часто его кладёт cert-manager (Let's Encrypt).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pulse
+  namespace: pulse
+  annotations:
+    # пример для популярного контроллера; в песочнице может не применяться
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+    - host: pulse.example.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pulse
+                port:
+                  number: 8080
+  # tls:
+  #   - hosts:
+  #       - pulse.example.ru
+  #     secretName: pulse-tls

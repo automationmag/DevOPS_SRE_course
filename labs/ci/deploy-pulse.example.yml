@@ -1,0 +1,41 @@
+# Пример. Не кладите сюда ключи.
+# 1. Прочитайте урок про секреты Actions.
+# 2. Заведите отдельный SSH-ключ только для робота.
+# 3. Секреты репозитория: VPS_HOST, VPS_USER, SSH_KEY
+# 4. На сервере /opt/pulse — git clone этого репозитория (или rsync только labs/pulse).
+# 5. Переименуйте файл в deploy-pulse.yml, когда будете готовы.
+#
+# Этот пример предполагает, что на сервере уже есть клон
+# и папка приложения — /opt/pulse, а data/ и .env не из git.
+
+name: deploy-pulse
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - labs/pulse/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull and recreate on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            set -e
+            cd /opt/pulse
+            if [ -d .git ]; then
+              git pull --ff-only
+            fi
+            if [ -f compose.caddy.yml ]; then
+              docker compose -f compose.caddy.yml up -d --build
+            else
+              docker compose up -d --build
+            fi
+            docker compose ps

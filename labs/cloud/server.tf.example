@@ -1,0 +1,53 @@
+# Концепт: одна машина + файрвол.
+# НЕ terraform apply, пока нет бюджетного алерта и плана сразу destroy.
+# Провайдер условный (aws) — ту же идею можно переписать под yandex.
+
+# terraform {
+#   required_providers {
+#     aws = { source = "hashicorp/aws" }
+#   }
+# }
+
+# Перевод ufw: 22 только с вашего IP, 80/443 с мира.
+# resource "aws_security_group" "web" {
+#   name        = "ucheb-web"
+#   description = "учебный аналог ufw"
+#   ingress {
+#     from_port   = 22
+#     to_port     = 22
+#     protocol    = "tcp"
+#     cidr_blocks = ["203.0.113.10/32"] # пример, не ваш IP
+#   }
+#   ingress {
+#     from_port   = 80
+#     to_port     = 80
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+#   ingress {
+#     from_port   = 443
+#     to_port     = 443
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+#   egress {
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
+
+# Перевод VPS: маленькая VM + диск.
+# resource "aws_instance" "ucheb" {
+#   ami           = "ami-учебный-не-вставлять-с-памяти"
+#   instance_type = "t3.micro"
+#   vpc_security_group_ids = [aws_security_group.web.id]
+#   tags = {
+#     Name    = "ucheb-pulse"
+#     Inventory = "модуль-19"
+#   }
+# }
+
+# После учёбы: terraform destroy
+# Проверить консоль: нет EIP, нет лишних дисков, нет NAT.

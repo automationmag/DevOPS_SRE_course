@@ -1,0 +1,4 @@
+email,plan,status,trial_ends,paid_until,last_event_id,notes
+anna@example.ru,pro,trial,2026-10-02,,evt_demo_1,пробные 7 дней
+boris@example.ru,pro,active,,2026-10-25,evt_demo_2,вебхук succeeded один раз
+anna@example.ru,pro,active,,2026-11-02,evt_demo_1,повтор evt_demo_1 не должен сдвинуть дату

@@ -1,0 +1,6 @@
+# Тот же смысл, что папка /opt/pulse на одной машине:
+# отделить учебное от чужого в общем кластере.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pulse

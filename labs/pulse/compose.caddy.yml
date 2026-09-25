@@ -1,0 +1,35 @@
+# Фрагмент: сложите с основным compose или замените файл на сервере.
+# Имя сервиса pulse должно совпадать с reverse_proxy в Caddyfile.
+
+services:
+  pulse:
+    build: .
+    container_name: pulse
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+    expose:
+      - "8080"
+    mem_limit: 64m
+    logging:
+      driver: json-file
+      options:
+        max-size: "2m"
+        max-file: "3"
+
+  caddy:
+    image: caddy:2.9-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy_data:/data
+      - ./caddy_config:/config
+    mem_limit: 64m
+    depends_on:
+      - pulse

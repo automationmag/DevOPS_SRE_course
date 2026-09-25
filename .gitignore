@@ -1,0 +1,49 @@
+# окружение Python и собранный сайт
+.venv/
+venv/
+env/
+site/
+
+# секреты: только примеры вида .env.example попадают в репозиторий
+.env
+.env.*
+!.env.example
+alert.env
+alert.env.local
+
+# ключи и пропуска
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519*
+*.pem
+*.key
+*.ppk
+kubeconfig
+.kube/
+
+# состояние Terraform — карта вашей инфраструктуры
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# резервные копии и личный инвентарь
+backups/
+*.tgz
+*.tar.gz
+inventory-*.md
+!docs/inventory-template.md
+
+# личные рабочие заметки (не в публичный репозиторий)
+промпт.txt
+
+# служебное
+*.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

@@ -1,0 +1,29 @@
+# Пример правил Prometheus. Пороги учебные.
+# На 1 ГБ эти правила не крутятся — смысл читайте, связка с Telegram в модуле 11.
+
+groups:
+  - name: pulse-lite
+    rules:
+      - alert: PulseDown
+        expr: probe_success == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Пульс не отвечает на health больше 2 минут"
+
+      - alert: DiskFilling
+        expr: (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) < 0.15
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "На корневом диске свободно меньше 15%"
+
+      - alert: MemoryLow
+        expr: node_memory_MemAvailable_bytes < 80000000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Свободной памяти меньше ~80 МБ"

@@ -1,0 +1,13 @@
+# Аналог volumes: ./data:/data в Compose.
+# PVC просит диск у кластера; кто даст диск — StorageClass (как «какой диск у хостера»).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pulse-data
+  namespace: pulse
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

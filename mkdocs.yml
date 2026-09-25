@@ -1,0 +1,240 @@
+site_name: DevOps и SRE с нуля
+site_description: Авторский курс — от своего VPS до продакшена, мониторинга и масштабирования
+site_url: https://automationmag.github.io/DevOPS_SRE_course/
+repo_url: https://github.com/automationmag/DevOPS_SRE_course
+repo_name: DevOPS_SRE_course
+use_directory_urls: true
+
+exclude_docs: |
+  images/README.md
+
+theme:
+  name: material
+  language: ru
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Тёмная тема
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая тема
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.expand
+    - navigation.footer
+    - navigation.top
+    - toc.follow
+    - toc.integrate
+    - content.code.copy
+    - search.highlight
+    - search.suggest
+    - search.share
+  icon:
+    logo: material/server
+    admonition:
+      note: material/book-open-variant
+      tip: material/lightbulb
+      warning: material/alert
+      failure: material/close-octagon
+      success: material/check-circle
+      info: material/information
+
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/progress.js
+  - path: javascripts/mermaid.js
+    type: module
+
+extra:
+  generator: false
+
+plugins:
+  - search:
+      lang: ru
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Главная: index.md
+  - Как учиться: how-to-study.md
+  - Мой учебный VPS: lab-server.md
+  - Прогресс: progress.md
+  - Как потом дать доступ другим: access-later.md
+  - Модуль 0. Карта:
+      - Зачем этот курс: modules/m00/01-karta.md
+      - DevOps и SRE простыми словами: modules/m00/02-devops-sre.md
+      - Путь запроса от браузера: modules/m00/03-put-zaprosa.md
+      - Три правила прода: modules/m00/04-tri-pravila.md
+  - Модуль 1. Сервер и интернет:
+      - Что такое сервер и VPS: modules/m01/01-chto-takoe-server.md
+      - IP, домен и DNS: modules/m01/02-ip-domen-dns.md
+      - SSH и ключи: modules/m01/03-ssh-kluchi.md
+      - Linux на минимуме: modules/m01/04-linux-minimum.md
+      - Хостеры в РФ: modules/m01/05-hostery-rf.md
+      - Лаборатория. Первый вход: labs/lab-01-pervyy-vhod.md
+  - Модуль 2. Безопасность с дня один:
+      - Обновления: modules/m02/01-obnovleniya.md
+      - Файрвол и fail2ban: modules/m02/02-firewall-fail2ban.md
+      - Не работать под root: modules/m02/03-ne-root.md
+      - Секреты: modules/m02/04-sekrety.md
+      - Лаборатория. Сервер можно использовать: labs/lab-02-server-gotov.md
+  - Модуль 3. Docker без магии:
+      - Зачем контейнер: modules/m03/01-zachem-docker.md
+      - Образ, контейнер, том, сеть: modules/m03/02-obraz-konteyner.md
+      - Dockerfile и Compose: modules/m03/03-dockerfile-compose.md
+      - Лимиты памяти на 1 ГБ: modules/m03/04-limity-pamyati.md
+      - Лаборатория. Упаковать «Пульс»: labs/lab-03-pulse-docker.md
+  - Модуль 4. Первый прод:
+      - Файлы на сервере: modules/m04/01-fayly-na-servere.md
+      - Запуск и автоподъём: modules/m04/02-zapusk-i-avtopodyom.md
+      - "Порты: что торчит наружу": modules/m04/03-porty.md
+      - Типичные ошибки деплоя: modules/m04/04-oshibki-deploy.md
+      - Лаборатория. Открыть по IP: labs/lab-04-otkryt-po-ip.md
+  - Модуль 5. Домен и HTTPS:
+      - DNS-записи: modules/m05/01-dns-zapisi.md
+      - Caddy и Nginx: modules/m05/02-caddy-nginx.md
+      - HTTPS и сертификат: modules/m05/03-https.md
+      - Несколько сервисов на одном сервере: modules/m05/04-neskolko-servisov.md
+      - Лаборатория. Домен и замочек: labs/lab-05-domen-https.md
+  - Модуль 6. Данные и бэкапы:
+      - Обзор модуля: modules/m06/index.md
+      - Что бэкапить: modules/m06/01-chto-bekapat.md
+      - Правило 3-2-1: modules/m06/02-pravilo-321.md
+      - Куда класть копию в РФ: modules/m06/03-kuda-klast-rf.md
+      - Проверка восстановления: modules/m06/04-proverka-vosstanovleniya.md
+      - Лаборатория. Поломка и откат: labs/lab-06-polomka-i-otkat.md
+  - Модуль 7. Секреты и среды:
+      - Обзор модуля: modules/m07/index.md
+      - Три среды и .env: modules/m07/01-tri-sredy.md
+      - Staging как репетиция: modules/m07/02-staging.md
+      - Ротация ключа: modules/m07/03-rotaciya.md
+      - Лаборатория. Два .env: labs/lab-07-dve-sredy.md
+  - Модуль 8. Git и CI/CD:
+      - Обзор модуля: modules/m08/index.md
+      - Git как источник правды: modules/m08/01-git-istoriya.md
+      - Что такое CI/CD: modules/m08/02-cicd.md
+      - GitHub Actions и секреты: modules/m08/03-actions-i-sekrety.md
+      - Откат и GitHub Pages: modules/m08/04-otkat-i-pages.md
+      - Лаборатория. Pages и деплой: labs/lab-08-pages-i-deploy.md
+  - Модуль 9. Логи:
+      - Обзор модуля: modules/m09/index.md
+      - Что такое лог и уровни: modules/m09/01-chto-takoe-log.md
+      - Где смотреть: modules/m09/02-gde-smotret.md
+      - Расследование по следам: modules/m09/03-rassledovanie.md
+      - Лаборатория. Найти по логам: labs/lab-09-nayti-po-logam.md
+  - Модуль 10. Наблюдаемость:
+      - Обзор модуля: modules/m10/index.md
+      - Метрики, логи, трейсы: modules/m10/01-tri-stolpa.md
+      - Лёгкий стек на 1 ГБ: modules/m10/02-legkiy-stek.md
+      - Prometheus, Grafana, Loki: modules/m10/03-prometheus-grafana.md
+      - Какие панели нужны: modules/m10/04-kakie-paneli.md
+  - Модуль 11. Алерты:
+      - Обзор модуля: modules/m11/index.md
+      - Хороший и плохой алерт: modules/m11/01-horoshiy-alert.md
+      - Что алертить сначала: modules/m11/02-chto-alertit.md
+      - Telegram и n8n: modules/m11/03-telegram-i-n8n.md
+      - Дежурство для одного: modules/m11/04-dezhurstvo.md
+      - Лаборатория. Алерт в Telegram: labs/lab-11-telegram-alert.md
+  - Модуль 12. SRE-практики:
+      - Обзор модуля: modules/m12/index.md
+      - SLI, SLO и бюджет ошибок: modules/m12/01-sli-slo.md
+      - Инцидент: modules/m12/02-incident.md
+      - Postmortem: modules/m12/03-postmortem.md
+      - Лаборатория. Учебный инцидент: labs/lab-12-uchebnyy-incident.md
+  - Модуль 13. Масштабирование:
+      - Обзор модуля: modules/m13/index.md
+      - Вертикально и горизонтально: modules/m13/01-vertikal-gorizontal.md
+      - Узкие места: modules/m13/02-uzkie-mesta.md
+      - Очереди и кэш: modules/m13/03-ocheredi-i-kesh.md
+      - Масштаб в РФ: modules/m13/04-masshtab-v-rf.md
+      - Лаборатория. Мини-тест: labs/lab-13-mini-nagruzka.md
+  - Модуль 14. Доступы к инфраструктуре:
+      - Обзор модуля: modules/m14/index.md
+      - Ключи и роли: modules/m14/01-kluchi-i-roli.md
+      - Админки и туннель: modules/m14/02-adminki-i-tunnel.md
+      - Уход человека: modules/m14/03-uhod-cheloveka.md
+      - Лаборатория. Второй пользователь: labs/lab-14-vtoroy-polzovatel.md
+  - Модуль 15. Подписка и доступ к продукту:
+      - Обзор модуля: modules/m15/index.md
+      - Пользователи и арендаторы: modules/m15/01-polzovateli-i-tenancy.md
+      - Тарифы и ЮKassa: modules/m15/02-tarify-i-yookassa.md
+      - Вебхуки и сверка: modules/m15/03-vebhuki-i-sverka.md
+      - Юристы и админка: modules/m15/04-yuristy-i-adminka.md
+      - Лаборатория. Таблица подписки: labs/lab-15-tablica-podpiski.md
+  - Модуль 16. Деньги и порядок:
+      - Обзор модуля: modules/m16/index.md
+      - Из чего складывается счёт: modules/m16/01-iz-chego-schet.md
+      - Биллинг и календарь: modules/m16/02-billing-i-kalendar.md
+      - Живой инвентарь: modules/m16/03-zhivoy-inventar.md
+      - Лаборатория. Заполнить инвентарь: labs/lab-16-inventar.md
+  - Модуль 17. Чеклист и диплом:
+      - Обзор модуля: modules/m17/index.md
+      - Полный чеклист: modules/m17/01-polnyy-cheklist.md
+      - "Диплом: сервис": modules/m17/02-diplom-servis.md
+      - "Диплом: учебник на Pages": modules/m17/03-diplom-pages.md
+      - Лаборатория. Защита диплома: labs/lab-17-diplom.md
+  - Модуль 18. Kubernetes:
+      - Обзор модуля: modules/m18/index.md
+      - Боль и отличие от Compose: modules/m18/01-bol-i-compose.md
+      - Сущности с аналогиями: modules/m18/02-sushchnosti.md
+      - Control plane и worker: modules/m18/03-control-plane.md
+      - Деплой, Helm, откат: modules/m18/04-deploy-helm-otkat.md
+      - Probes, лимиты, Ingress: modules/m18/05-probes-ingress.md
+      - Когда не нужен и почему не 1 ГБ: modules/m18/06-kogda-ne-nuzhen.md
+      - Страхи и маркетинг: modules/m18/07-strahi.md
+      - Лаборатория. Песочница: labs/lab-18-pesochnica-k8s.md
+  - Модуль 19. Большое облако и AWS:
+      - Обзор модуля: modules/m19/index.md
+      - Зачем большие облака: modules/m19/01-zachem-oblaka.md
+      - Регион, VPC, security group: modules/m19/02-set-i-zony.md
+      - Словарь и таблица перевода: modules/m19/03-slovar-i-perevod.md
+      - Счёт и Free Tier: modules/m19/04-schet-i-budget.md
+      - Когда AWS, когда РФ: modules/m19/05-kogda-chto.md
+      - Полный AWS и Terraform: modules/m19/06-polnyy-aws-i-terraform.md
+      - Лаборатория. Консоль и IaC: labs/lab-19-konsol-i-terraform.md
+  - Шпаргалки:
+      - Все команды курса: cheatsheet.md
+      - Глоссарий: glossary.md
+      - Инвентарь: inventory-template.md
+      - Чеклист продакшена: checklists/production.md
+      - Runbook. Сайт не открывается: runbooks/site-down.md
+      - Runbook. Диск кончается: runbooks/disk-full.md
+      - Runbook. Сертификат истекает: runbooks/ssl-expiring.md
